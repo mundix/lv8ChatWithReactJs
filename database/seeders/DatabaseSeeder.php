@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CreateAdminSeeder::class,
             CreateUsersSeeder::class,
             CreateProductsSeeder::class,
+            CreateRoomsSeeder::class,
         ]);
     }
 }
