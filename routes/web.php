@@ -14,13 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    $user = App\Models\User::findOrFail(25);
+    auth()->login($user);
+    if(auth()->check()) {
+        return redirect()->route('home');
+    }
+
     return view('welcome');
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::post('/my/rooms', [\App\Http\Controllers\ChatController::class, 'getMyRooms']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
